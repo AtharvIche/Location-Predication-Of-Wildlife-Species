@@ -17,7 +17,7 @@ st.markdown("""
     <style>
         .title {
             text-align: center;
-            color: #1E90FF;
+            color: #40E0D0;
             font-size: 36px;
             font-weight: bold;
         }
@@ -27,7 +27,7 @@ st.markdown("""
             font-size: 20px;
         }
         .highlight-box {
-            background-color: #f0f8ff;
+            background-color: #8c39bf;
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 10px;
@@ -39,7 +39,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='title'>🐦 Wildlife Species Location Prediction System</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>📍 A Smart AI System for Wildlife Movement Analysis & Prediction</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'> A Smart AI System for Wildlife Movement Analysis & Prediction</div>", unsafe_allow_html=True)
 st.write("")
 
 # Sidebar for File Upload
@@ -167,8 +167,41 @@ if uploaded_file:
     past_locations = data[['latitude', 'longitude']].dropna()
     m = folium.Map(location=[past_locations.iloc[-1]['latitude'], past_locations.iloc[-1]['longitude']], zoom_start=8)
 
-    folium.PolyLine(past_locations.values, color="blue", weight=3, opacity=0.7).add_to(m)
-    folium.Marker([future_lat, future_lon], popup="Predicted Location", icon=folium.Icon(color="red")).add_to(m)
-    
-    st.write("### 🌍 Wildlife Movement and Prediction")
+    # Connect all locations with a line
+    folium.PolyLine(
+        past_locations.values,
+        color="blue",
+        weight=3,
+        opacity=0.7,
+        tooltip="Past Movements"
+    ).add_to(m)
+
+    # Add markers for all previous locations
+    for _, row in past_locations.iterrows():
+        folium.Marker(
+            location=[row['latitude'], row['longitude']],
+            icon=folium.Icon(color="lightblue", icon="cloud")
+        ).add_to(m)
+
+    # Start Location Marker
+    folium.Marker(
+        location=[past_locations.iloc[0]['latitude'], past_locations.iloc[0]['longitude']],
+        popup="Starting Point",
+        icon=folium.Icon(color="green", icon="flag")
+    ).add_to(m)
+
+    # Last Known Location Marker
+    folium.Marker(
+        location=[past_locations.iloc[-1]['latitude'], past_locations.iloc[-1]['longitude']],
+        popup="Last Known Location",
+        icon=folium.Icon(color="orange", icon="info-sign")
+    ).add_to(m)
+
+    # Predicted Location Marker (Red)
+    folium.Marker(
+        [future_lat, future_lon],
+        popup=f"Predicted Location: ({future_lat:.6f}, {future_lon:.6f})",
+        icon=folium.Icon(color="red", icon="map-marker")
+    ).add_to(m)
+
     st_folium(m, returned_objects=[])
