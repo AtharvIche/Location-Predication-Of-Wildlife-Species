@@ -21,11 +21,6 @@ st.markdown("""
             font-size: 36px;
             font-weight: bold;
         }
-        .sub-title {
-            text-align: center;
-            color: #444;
-            font-size: 20px;
-        }
         .highlight-box {
             background-color: #8c39bf;
             padding: 10px;
@@ -39,7 +34,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='title'>🐦 Wildlife Species Location Prediction System</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'> A Smart AI System for Wildlife Movement Analysis & Prediction</div>", unsafe_allow_html=True)
 st.write("")
 
 # Sidebar for File Upload
