@@ -39,7 +39,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='title'>🐦 Wildlife Species Location Prediction System</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'> A AI System for Wildlife Movement Analysis & Prediction</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'> A Smart System for Wildlife Movement Analysis & Prediction</div>", unsafe_allow_html=True)
 st.write("")
 
 # Sidebar for File Upload
