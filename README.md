@@ -23,8 +23,8 @@ Installation & Usage
 
 Clone the Repository  
 terminal
-git clone https://github.com/yourusername/Wildlife-Species-Location-Prediction.git
-cd Wildlife-Species-Location-Prediction
+https://github.com/AtharvIche/Location-Predication-Of-Wildlife-Species.git
+cd Location-Predication-Of-Wildlife-Species
 
 
 Install Dependencies 
